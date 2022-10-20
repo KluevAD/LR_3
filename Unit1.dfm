@@ -45,6 +45,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 8
@@ -52,6 +53,7 @@ object Form1: TForm1
     Width = 113
     Height = 42
     Caption = #1054#1089#1090#1072#1085#1086#1074#1082#1072
+    Enabled = False
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -59,6 +61,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
+    OnClick = Button2Click
   end
   object Edit1: TEdit
     Left = 198
