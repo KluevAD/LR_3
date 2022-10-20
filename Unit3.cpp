@@ -12,7 +12,7 @@ __fastcall ProcessThread::ProcessThread(bool CreateSuspended, TEvent* myEvent, c
 {
 	FreeOnTerminate = true;
 	this->myEvent = myEvent;
-	this->dataBufferPrt = dataBufferPtr;
+	this->dataBufferPtr = dataBufferPtr;
 }
 
 void __fastcall ProcessThread::Execute()
@@ -39,17 +39,18 @@ void __fastcall ProcessThread::Execute()
 
 		Sleep(20);
 	}
+}
 
-	void printDebug(int colorCode, UnicodeString msg)
+void printDebug(int colorCode, UnicodeString msg)
 	{
-        TColor colors[] = {
+		TColor colors[] = {
 		clBlack, clRed, clYellow, clLime, clAqua, clBlue, clFuchsia, clWhite,
 		clMaroon, clGreen, clOlive, clNavy, clPurple, clTeal, clGray, clSilver
 		};
 
 	Form1->DebugLabel->Font->Color = colors[colorCode];
 	Form1->DebugLabel->Caption = msg;
-    }
+	}
 
 	void __fastcall UpdateDebugStatus_Terminated()
 	{
@@ -60,4 +61,3 @@ void __fastcall ProcessThread::Execute()
 	{
 		printDebug(9, "Обработка данных...");
 	}
-}
