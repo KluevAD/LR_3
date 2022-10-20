@@ -4,6 +4,7 @@
 
 #include "Unit1.h"
 #include "Unit2.h"
+#include "Unit3.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -24,7 +25,7 @@ void __fastcall ReadThread::Execute()
 	swprintf(deviceName, L"\\\\.\\%c:", deviceLiteral);
 
 	HANDLE fileHandle = CreateFile(
-		MediaType, // Имя файла/устройства (wchar*)
+		deviceName, // Имя файла/устройства (wchar*)
 		GENERIC_READ, // режим доступа
 		FILE_SHARE_READ, //Режим совместной работы
 		NULL, // Атрибуты безопасности
@@ -36,7 +37,7 @@ void __fastcall ReadThread::Execute()
 
 	if(fileHandle == INVALID_HANDLE_VALUE)
 	{
-	   Synchronize(&UpdateDebugStatus_INVALID_HANDLE_VALUE);
+	   Synchronize(&UpdateDebusStatus_INVALID_HANDLE_VALUE);
 	   CloseHandle(fileHandle);
 	   return;
 	}
@@ -56,7 +57,7 @@ void __fastcall ReadThread::Execute()
 
 	if(currentPosition != sectorOffset.LowPart)
 	{
-		Synchronize(&UpdateLabelErrorPosition);
+		Synchronize(&UpdateDebusStatus_ErrorPosition);
 		CloseHandle(fileHandle);
 		return;
 	}
@@ -103,7 +104,7 @@ void __fastcall ReadThread::Execute()
 
 	CloseHandle(fileHandle);
 	ProcessThread->Terminate();
-	delete ProcessThreadPtr;
+	delete ProcessThread;
 }
 
 void printDebug(int colorCode, UnicodeString msg) {

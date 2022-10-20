@@ -13,7 +13,7 @@ private:
 protected:
 	void __fastcall Execute();
 	void __fastcall UpdateDebugStatus();
-	void __fastcall UpdateDebusStatus_INVALID_HANDLE_VALUE();
+	void __fastcall UpdateDebugStatus_INVALID_HANDLE_VALUE();
 	void __fastcall UpdateDebugStatus_ErrorPosition();
 	void __fastcall UpdateDebugStatus_ErrorbytesRead();
 	void __fastcall UpdateDebugStatus_End();
