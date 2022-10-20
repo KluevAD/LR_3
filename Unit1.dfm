@@ -26,7 +26,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Label2: TLabel
+  object DebugLabel: TLabel
     Left = 8
     Top = 135
     Width = 109
