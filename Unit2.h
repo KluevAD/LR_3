@@ -8,7 +8,7 @@
 class ReadThread : public TThread
 {
 private:
-	class ProcessThread* ProcessThreadPtr;
+	class ProcessThread* processThread;
 	TEvent* myEvent;
 protected:
 	void __fastcall Execute();
