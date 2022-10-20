@@ -17,11 +17,11 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-	#Считывание буквы диска
-	UnicodeString deviceName = ChooseDeviceEdit->Text;
+	//Считывание буквы диска
+	UnicodeString deviceName = Edit1->Text;
 	wchar_t deviceLiteral = deviceName.w_str()[0];
 
-	#Запуск потока
+	//Запуск потока
 	readThread = new ReadThread(false, deviceLiteral);
 	Button1->Enabled = false;
 	Button2->Enabled = true;
