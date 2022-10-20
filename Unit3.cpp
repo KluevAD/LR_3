@@ -52,12 +52,12 @@ void printDebug(int colorCode, UnicodeString msg)
 	Form1->DebugLabel->Caption = msg;
 	}
 
-	void __fastcall UpdateDebugStatus_Terminated()
+	void __fastcall ProcessThread::UpdateDebugStatus_Terminated()
 	{
 		printDebug(9, "Поток остановлен.");
 	}
 
-	void __fastcall UpdateDebugStatus_Processing()
+	void __fastcall ProcessThread::UpdateDebugStatus_Processing()
 	{
 		printDebug(9, "Обработка данных...");
 	}
