@@ -12,7 +12,7 @@ __fastcall ProcessThread::ProcessThread(bool CreateSuspended, TEvent* myEvent, c
 {
 	FreeOnTerminate = true;
 	this->myEvent = myEvent;
-	this->dataBuffer = dataBufferPtr;
+	this->dataBufferPrt = dataBufferPtr;
 }
 
 void __fastcall ProcessThread::Execute()
@@ -20,12 +20,12 @@ void __fastcall ProcessThread::Execute()
     // Обработка данных
 	while (true) {
 		if (Terminated) {
-			messageStatus = 0; Synchronize(&printStatus);
+			Synchronize(&UpdateDebugStatus_Terminated);
 			break;
 		}
 
 		if (myEvent->WaitFor(0) == wrSignaled) {
-			messageStatus = 1; Synchronize(&printStatus);
+			Synchronize(&UpdateDebugStatus_Processing);
 
 			// TODO Копирование данных к себе
 
@@ -40,15 +40,16 @@ void __fastcall ProcessThread::Execute()
 		Sleep(20);
 	}
 
-    void printDebug(int colorCode, UnicodeString msg) {
-	TColor colors[] = {
+	void printDebug(int colorCode, UnicodeString msg)
+	{
+        TColor colors[] = {
 		clBlack, clRed, clYellow, clLime, clAqua, clBlue, clFuchsia, clWhite,
 		clMaroon, clGreen, clOlive, clNavy, clPurple, clTeal, clGray, clSilver
-	};
+		};
 
 	Form1->DebugLabel->Font->Color = colors[colorCode];
 	Form1->DebugLabel->Caption = msg;
-}
+    }
 
 	void __fastcall UpdateDebugStatus_Terminated()
 	{
@@ -58,5 +59,5 @@ void __fastcall ProcessThread::Execute()
 	void __fastcall UpdateDebugStatus_Processing()
 	{
 		printDebug(9, "Обработка данных...");
-    }
+	}
 }
