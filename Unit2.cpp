@@ -37,7 +37,7 @@ void __fastcall ReadThread::Execute()
 
 	if(fileHandle == INVALID_HANDLE_VALUE)
 	{
-	   Synchronize(&UpdateDebusStatus_INVALID_HANDLE_VALUE);
+	   Synchronize(&UpdateDebugStatus_INVALID_HANDLE_VALUE);
 	   CloseHandle(fileHandle);
 	   return;
 	}
@@ -57,12 +57,12 @@ void __fastcall ReadThread::Execute()
 
 	if(currentPosition != sectorOffset.LowPart)
 	{
-		Synchronize(&UpdateDebusStatus_ErrorPosition);
+		Synchronize(&UpdateDebugStatus_ErrorPosition);
 		CloseHandle(fileHandle);
 		return;
 	}
 
-	ProcessThread->Start();
+	processThread->Start();
 
 	DWORD bytesToRead = 4096; // сколько нужно считать
 	DWORD bytesRead; // сколько удалось считать
@@ -103,8 +103,8 @@ void __fastcall ReadThread::Execute()
 	}
 
 	CloseHandle(fileHandle);
-	ProcessThread->Terminate();
-	delete ProcessThread;
+	processThread->Terminate();
+	delete processThread;
 }
 
 void printDebug(int colorCode, UnicodeString msg) {
