@@ -18,7 +18,7 @@ protected:
 	void __fastcall UpdateDebugStatus_ErrorbytesRead();
 	void __fastcall UpdateDebugStatus_End();
 public:
-	__fastcall ReadThread(bool CreateSuspended);
+	__fastcall ReadThread(bool CreateSuspended, wchar_t deviceLiteral);
 	char dataBuffer[4096];
 	wchar_t deviceLiteral;
 };
