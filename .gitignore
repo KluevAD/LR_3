@@ -35,3 +35,5 @@
 __history/Unit1.h.~4~
 __recovery/__recovery.ini
 __history/Unit3.cpp.~4~
+*.gitignore
+*.gitattributes
