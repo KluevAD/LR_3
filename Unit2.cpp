@@ -39,6 +39,8 @@ void __fastcall ReadThread::Execute()
 	{
 	   Synchronize(&UpdateDebugStatus_INVALID_HANDLE_VALUE);
 	   CloseHandle(fileHandle);
+	   Form1->Button1->Enabled = true;
+	   Form1->Button2->Enabled = false;
 	   return;
 	}
 
